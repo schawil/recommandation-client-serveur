@@ -1,7 +1,7 @@
 ## PROJET : SYSTÈME DE RECOMMANDATION EN C
 
 
-Ce projet est un ***système de recommandation complet développé en C***, conçu avec une architecture client-serveur modulaire. Il intègre un prétraitement avancé des données de ratings et met en œuvre trois algorithmes de recommandation distincts : KNN, la Factorisation Matricielle (MF), et un modèle basé sur le PageRank (graphe). Le système inclut également des outils robustes pour l'évaluation des performances via des métriques comme le Hit Ratio, la MAP et le NDCG, offrant ainsi une solution de bout en bout pour la génération et l'analyse de recommandations.
+Ce projet est un ***système de recommandation complet développé en C***, conçu avec une architecture client-serveur modulaire. Il met en œuvre trois algorithmes de recommandation distincts : KNN, la Factorisation Matricielle (MF), et un modèle basé sur le PageRank (graphe). Le système inclut également des outils robustes pour l'évaluation des performances via des métriques comme le Hit Ratio, la MAP et le NDCG, offrant ainsi une solution de bout en bout pour la génération et l'analyse de recommandations.
 
 
 ### Server 
