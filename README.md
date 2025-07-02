@@ -68,8 +68,19 @@ make
   docker run -it --rm -p 9000:9000 reco-server
 ```
 
-# Auteurs
+### HINTS
+
+Chaque dossier contient un Makefile propre afin de pourvoir tester la recommandation et l'évaluation pour chaque module (KNN, MF, GRAPH)
+
+```bash
+  make clean
+  make 
+  ./test_knn | ./test_mf | ./test_pagerank | ./test_pagerank_all
+```
+
+
+### Auteurs
 
 * **[MEFIRE]** - Développeur principal
-* **[ANOU]** - Contribution à [ module KNN]
-* **[POLLA]** - Contribution à [ module GRAPH]
+* **[ANOU]** - Contribution à [module KNN]
+* **[POLLA]** - Contribution à [module GRAPH]
