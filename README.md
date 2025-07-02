@@ -25,7 +25,7 @@ Compiler le code global pour avoir le bliothèque `libreco.so`, exécuter le ser
 ### Client 
 
 Après avoir recupérer le fichier du client dans le projet (client.c) le mettre dans un dossier quelconque et le compiler et l'exécuter
-(Modifier : SERVER_IP "192.168.161.215" et remplacer par l'adresse de la machine ou du serveur qui contient le projet global)
+(Modifier : *SERVER_IP "192.168.161.215"* et remplacer par l'adresse de la machine ou du serveur qui contient le projet global)
 
 1. Compilation
 
