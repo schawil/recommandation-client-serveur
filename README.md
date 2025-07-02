@@ -75,7 +75,8 @@ Chaque dossier contient un Makefile propre afin de pourvoir tester la recommanda
 ```bash
   make clean
   make 
-  ./test_knn | ./test_mf | ./test_pagerank | ./test_pagerank_all
+  gcc test_knn.c -L. -lknn -o test_knn -lm | gcc test_knn.c -L. -lknn -o test_knn -lm | gcc test_mf.c -L. -lknn -o test_mf -lm | gcc test_pagerank.c -L. -lpagerank -o test_pagerank 
+  LD_LIBRARY_PATH=. ./test_knn | LD_LIBRARY_PATH=. ./test_mf | LD_LIBRARY_PATH=. ./test_pagerank | LD_LIBRARY_PATH=. ./test_pagerank_all
 ```
 
 
