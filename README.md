@@ -1,39 +1,43 @@
 ## PROJET : SYSTÈME DE RECOMMANDATION EN C
 
 
-
-├── client.c              # Code source du client
-├── Dockerfile            # Fichier pour la conteneurisation (si implémentée)
-├── graph                 # Module PageRank
-│   ├── eval.c            # Fonctions d'évaluation spécifiques au graphe (si nécessaires)
-│   ├── eval.h
-│   ├── pagerank.c        # Implémentation de l'algorithme PageRank
-│   ├── pagerank.h
-│   ├── ratings.txt       # Données de ratings pour le module graphe
-│   └── test.txt          # Données de test pour le module graphe
-├── knn                   # Module K-Nearest Neighbors
-│   ├── knn.c             # Implémentation de l'algorithme KNN
-│   ├── knn.h
-│   ├── ratings.txt       # Données de ratings pour le module KNN
-│   └── test.txt          # Données de test pour le module KNN
-├── mf                    # Module Factorisation Matricielle
-│   ├── mf.c              # Implémentation de l'algorithme MF
-│   ├── mf.h
-│   ├── ratings.txt       # Données de ratings pour le module MF
-│   └── test.txt          # Données de test pour le module MF
-├── Makefile              # Makefile principal pour compiler tout le projet
-├── reco.c                # Logique de recommandation principale, agrège les algorithmes
-├── reco.h                # Déclarations pour reco.c
-├── server.c              # Code source du serveur
-├── test_reco.c           # Exécutable de test pour la logique de recommandation et l'évaluation
-├── preprocessing.c       # Fonctions de prétraitement des données
-├── preprocessing.h
-├── evaluation.c          # Fonctions d'évaluation des recommandations
-├── evaluation.h
-├── ratings.txt           # Fichier de données de ratings brut (ex: MovieLens)
-└── test.txt              # Fichier de données de test (extrait de ratings.txt)
+Ce projet est un système de recommandation complet développé en C, conçu avec une architecture client-serveur modulaire. Il intègre un prétraitement avancé des données de ratings et met en œuvre trois algorithmes de recommandation distincts : KNN, la Factorisation Matricielle (MF), et un modèle basé sur le PageRank (graphe). Le système inclut également des outils robustes pour l'évaluation des performances via des métriques comme le Hit Ratio, la MAP et le NDCG, offrant ainsi une solution de bout en bout pour la génération et l'analyse de recommandations.
 
 
+### Server 
+
+Compiler le code global pour avoir le bliothèque `libreco.so`, exécuter le server (Remplacer @IP par celle de la machine qui héberge le projet) avec la commande:
+
+1. Compilation du projet
+```bash
+  make clean // nettoyer les fichiers *.o .so et de test
+  make // compiler le projet
+```
+
+2. Compilation et Exécution su server 
+
+```bash
+  gcc server.c -o server -lpthread -ldl -L. -lreco -lm
+  LD_LIBRARY_PATH=. ./server
+```
+
+
+### Client 
+
+Après avoir recupérer le fichier du client dans le projet (client.c) le mettre dans un dossier quelconque et le compiler et l'exécuter
+(Modifier : SERVER_IP "192.168.161.215" et remplacer par l'adresse de la machine ou du serveur qui contient le projet global)
+
+1. Compilation
+
+```bash
+  gcc client.c -c
+  gcc client.c -o client
+```
+2. Exécution
+
+```bash
+  ./client 
+```
 
 
 ## Compilation du Projet
@@ -42,13 +46,24 @@ Pour compiler l'ensemble du projet (la bibliothèque partagée `libreco.so`, l'e
 
 ```bash
 make clean
-make libreco.so
+make 
 ```
+### Dockerisation
+
+1. Configuration du Dockerfile
 
 ### Compiler et exécuter le server (Remplacer @IP par celle de la machine qui héberge le projet) avec la commande 
 ```bash
   gcc server.c -o server -L. -lreco -lpthread -lm
   LD_LIBRARY_PATH=. ./server
 ```
+
+2. Construire l’image 
+
+```bash 
+  docker build -t reco-server .
+```
+3. docker run -it --rm -p 9000:9000 reco-server
+
 
 

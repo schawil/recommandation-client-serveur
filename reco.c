@@ -24,7 +24,7 @@ char *generate_recommendations(const char *algo_name, int user_id, int top_n)
     {
         if (!knn_loaded)
         {
-            load_ratings("knn/ratings.txt") ;
+            load_ratings("knn/ratings.txt");
             compute_pearson_matrix();
             knn_loaded = 1;
         }
@@ -42,34 +42,40 @@ char *generate_recommendations(const char *algo_name, int user_id, int top_n)
             }
         }
         return recommend_mf(user_id, top_n, mf_model);
-    } else if (strcmp(algo_name, "graph") == 0) {
-    if (!graph_loaded) {
-        build_graph("graph/ratings.txt");
-        pagerank_compute_scores(user_id);
-        graph_loaded = 1;
     }
-    int dummy = 0;
-    uint32_t* ids = pagerank_recommender(user_id, top_n, &dummy);
-    if (!ids) return NULL;
+    else if (strcmp(algo_name, "graph") == 0)
+    {
+        if (!graph_loaded)
+        {
+            build_graph("graph/ratings.txt");
+            pagerank_compute_scores(user_id);
+            graph_loaded = 1;
+        }
+        int dummy = 0;
+        uint32_t *ids = pagerank_recommender(user_id, top_n, &dummy);
+        if (!ids)
+            return NULL;
 
-    char* result = malloc(256);
-    if (!result) return NULL;
-    result[0] = '\0';
+        char *result = malloc(256);
+        if (!result)
+            return NULL;
+        result[0] = '\0';
 
-    char buffer[16];
-    for (int i = 0; i < dummy; i++) {
-        sprintf(buffer, "%u", ids[i]);
-        strcat(result, buffer);
-        if (i < dummy - 1) strcat(result, ",");
+        char buffer[16];
+        for (int i = 0; i < dummy; i++)
+        {
+            sprintf(buffer, "%u", ids[i]);
+            strcat(result, buffer);
+            if (i < dummy - 1)
+                strcat(result, ",");
+        }
+
+        free(ids);
+        return result;
     }
-
-    free(ids);
-    return result;
-} else {
-    fprintf(stderr, "[RECO] Algorithme inconnu: '%s'\n", algo_name);
-    return NULL;
+    else
+    {
+        fprintf(stderr, "[RECO] Algorithme inconnu: '%s'\n", algo_name);
+        return NULL;
+    }
 }
-
-}
-
-

@@ -9,8 +9,8 @@
 #include <pthread.h>
 #include "reco.h" 
 
-#define SERVER_IP "192.168.161.215"
-#define PORT 9000
+#define SERVER_IP "192.168.161.215" // Remplacez par l'IP de votre serveur
+#define PORT 9000 // remplacer
 #define BUFFER_SIZE 1024
 
 void *handle_client(void *args)

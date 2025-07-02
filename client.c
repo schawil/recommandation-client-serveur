@@ -8,8 +8,6 @@
 #include <sys/wait.h>   // Pour waitpid() afin de gérer les processus zombies
 #include <pthread.h>
 
-//#include "reco.h" // Votre en-tête central pour les fonctions de recommandation
-
 #define PORT 9000                  // Port sur lequel le serveur écoute
 #define BUFFER_SIZE 1024           // Taille du buffer pour les messages
 #define SERVER_IP "192.168.161.215"  // Adresse IP du serveur

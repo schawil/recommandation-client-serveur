@@ -14,4 +14,4 @@ $(TARGET): $(SRC)
 
 clean:
 	rm -f $(TARGET) *.o *.so log.txt filtered.txt
-	rm -f knn/*.o mf/*.o graph/*.o
+	rm -f knn/*.o mf/*.o graph/*.o server test_reco 
